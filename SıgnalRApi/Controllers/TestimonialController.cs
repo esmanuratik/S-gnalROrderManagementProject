@@ -16,6 +16,13 @@ namespace SıgnalRApi.Controllers
         private readonly ITestimonialService _testimonialService;
         private readonly IMapper _mapper;
 
+		public TestimonialController(ITestimonialService testimonialService, IMapper mapper)
+		{
+			_testimonialService = testimonialService;
+			_mapper = mapper;
+		}
+      
+
         [HttpGet]
         public IActionResult TestimonialList()
         {
@@ -35,7 +42,7 @@ namespace SıgnalRApi.Controllers
             });
             return Ok("Referanslar Başarıyla Eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteTestimonial(int id)
         {
             var value = _testimonialService.GetByIdAsync(id);
@@ -44,7 +51,7 @@ namespace SıgnalRApi.Controllers
             return Ok("Referanslar Başarıyla Silindi.");
 
         }
-        [HttpGet("GetTestimonial")]
+        [HttpGet("{id}")]
         public IActionResult GetTestimonial(int id)
         {
             var value = _testimonialService.GetByIdAsync(id);

@@ -31,5 +31,6 @@ namespace DtoLayer.ProductDTO
         /// Ürün Durumu
         /// </summary>
         public bool ProductStatus { get; set; }
+        public int CategoryID { get; set; }
     }
 }

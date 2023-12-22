@@ -12,7 +12,13 @@ namespace BusinessLayer.Concrete
     public class ProductService : IProductService
     {
         private readonly IProductDal _productDal;
-        public void AddAsync(Product entity)
+
+		public ProductService(IProductDal productDal)
+		{
+			_productDal = productDal;
+		}
+
+		public void AddAsync(Product entity)
         {
            _productDal.Add(entity);
         }

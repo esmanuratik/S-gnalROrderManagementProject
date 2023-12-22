@@ -41,7 +41,7 @@ namespace SıgnalRApi.Controllers
             return Ok("Rezervasyon Başarı ile Yapıldı.");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteBooking(int id)
         {
            var value= _bookingService.GetByIdAsync(id);
@@ -67,7 +67,7 @@ namespace SıgnalRApi.Controllers
             return Ok("Rezervasyonunuz Başarı ile Güncellenmiştir.");
         }
 
-        [HttpGet("GetBooking")]
+        [HttpGet("{id}")]
         public IActionResult GetBooking(int id)
         {
             var value=_bookingService.GetByIdAsync(id);

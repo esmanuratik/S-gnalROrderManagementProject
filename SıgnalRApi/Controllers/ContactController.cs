@@ -40,7 +40,7 @@ namespace SıgnalRApi.Controllers
             });
             return Ok("İletişim Bilgileri Başarıyla Eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteContact(int id)
         {
             var value = _contactService.GetByIdAsync(id);
@@ -49,7 +49,7 @@ namespace SıgnalRApi.Controllers
             return Ok("İletişim Bilgileri Başarıyla Silindi.");
 
         }
-        [HttpGet("GetContact")]
+        [HttpGet("{id}")]
         public IActionResult GetContact(int id)
         {
             var value = _contactService.GetByIdAsync(id);

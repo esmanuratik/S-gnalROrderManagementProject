@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DtoLayer.ProductDTO
+﻿namespace SıgnalRWebUI.DTOs.ProductDTOs
 {
     /// <summary>
-    /// Ürünleri güncelleme işlemi yapılacak dto
+    /// Ürünleri ekleme işlemi yapacak dto
     /// </summary>
-    public class UpdateProductDto
+
+    public class CreateProductDto
     {
-        /// <summary>
-        /// Ürün ID si
-        /// </summary>
-        public int ProductID { get; set; }
         /// <summary>
         /// Ürün Adı
         /// </summary>

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DtoLayer.ProductDTO
+﻿namespace SıgnalRWebUI.DTOs.ProductDTOs
 {
     /// <summary>
-    /// Ürünleri güncelleme işlemi yapılacak dto
+    /// Ürünleri kategorisiyle birlikte çektiğimiz dto
     /// </summary>
-    public class UpdateProductDto
+    public class ResultProductDto
     {
         /// <summary>
         /// Ürün ID si
@@ -35,6 +29,10 @@ namespace DtoLayer.ProductDTO
         /// Ürün Durumu
         /// </summary>
         public bool ProductStatus { get; set; }
-        public int CategoryID { get; set; }
+        /// <summary>
+        /// Kategori Adı
+        /// </summary>
+        public string CategoryName { get; set; }
+
     }
 }

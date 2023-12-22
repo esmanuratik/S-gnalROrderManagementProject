@@ -13,7 +13,7 @@ namespace SıgnalRWebUI.Controllers
         {
             _httpClientFactory = httpClientFactory;
         }
-
+        //Listeleme İşlemi 
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();//istemci oluşturdum
@@ -45,7 +45,7 @@ namespace SıgnalRWebUI.Controllers
             var client = _httpClientFactory.CreateClient();//istemci oluşturdum
             var jsonData = JsonConvert.SerializeObject(createCategoryDto);
 
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");//jsona dönüştürüp encoding ile türkçe karakter almasını sağladığım yapı.
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");//jsona dönüştürdüğüm veriyi encoding ile türkçe karakter almasını sağladığım yapı.
 
             var responseMessage = await client.PostAsync("https://localhost:7001/api/Category", stringContent);
 

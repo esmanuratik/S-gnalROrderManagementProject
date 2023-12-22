@@ -40,7 +40,7 @@ namespace SıgnalRApi.Controllers
             });
             return Ok("İndirim Bilgileri Başarıyla Eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteDiscount(int id)
         {
             var value = _discountService.GetByIdAsync(id);
@@ -49,7 +49,7 @@ namespace SıgnalRApi.Controllers
             return Ok("İndirim Bilgileri Başarıyla Silindi.");
 
         }
-        [HttpGet("GetDiscount")]
+        [HttpGet("{id}")]
         public IActionResult GetDiscount(int id)
         {
             var value = _discountService.GetByIdAsync(id);

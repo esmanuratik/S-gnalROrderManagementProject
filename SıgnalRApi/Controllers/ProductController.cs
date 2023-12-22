@@ -18,20 +18,20 @@ namespace SıgnalRApi.Controllers
         private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
-        public ProductController(IProductService productService, IMapper mapper)
-        {
-            _productService = productService;
-            _mapper = mapper;
-        }
+		public ProductController(IProductService productService, IMapper mapper)
+		{
+			_productService = productService;
+			_mapper = mapper;
+		}
 
-        [HttpGet]
+		[HttpGet]
         public IActionResult ProductList()
         {
             var value = _mapper.Map<List<ResultProductDto>>(_productService.GetListAllAsync());
             return Ok(value);
         }
 
-        [HttpGet("GetProduct")]
+        [HttpGet("{id}")]
         public IActionResult GetProduct(int id)
         {
             var value = _productService.GetByIdAsync(id);
@@ -55,6 +55,7 @@ namespace SıgnalRApi.Controllers
             });
             return Ok(values.ToList());
         }
+
         [HttpPost]
         public IActionResult CreateProduct(CreateProductDto createProductDto)
         {
@@ -64,12 +65,12 @@ namespace SıgnalRApi.Controllers
                 Description = createProductDto.Description,
                 ImageUrl = createProductDto.ImageUrl,
                 Price = createProductDto.Price,
-                ProductName = createProductDto.ProductName
-
+                ProductName = createProductDto.ProductName,
+                CategoryID=createProductDto.CategoryID,
             });
             return Ok("Ürün Bilgileri Başarıyla Eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteProduct(int id)
         {
             var value = _productService.GetByIdAsync(id);
@@ -89,8 +90,8 @@ namespace SıgnalRApi.Controllers
                 ImageUrl = updateProductDto.ImageUrl,
                 Price = updateProductDto.Price,
                 ProductName = updateProductDto.ProductName,
-                ProductID= updateProductDto.ProductID
-
+                ProductID= updateProductDto.ProductID,
+                CategoryID= updateProductDto.CategoryID,
             });
 
             return Ok("İndirim Bilgileri Başarıyla Güncellendi");

@@ -42,7 +42,7 @@ namespace SıgnalRApi.Controllers
             });
             return Ok("Öne Çıkanlar Başarıyla Eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteFeature(int id)
         {
             var value = _featureService.GetByIdAsync(id);
@@ -51,7 +51,7 @@ namespace SıgnalRApi.Controllers
             return Ok("Öne Çıkanlar Başarıyla Silindi.");
 
         }
-        [HttpGet("GetFeature")]
+        [HttpGet("{id}")]
         public IActionResult GetFeature(int id)
         {
             var value = _featureService.GetByIdAsync(id);
