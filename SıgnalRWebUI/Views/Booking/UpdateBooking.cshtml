@@ -1,0 +1,61 @@
+﻿@model UpdateBookingDto
+
+@{
+    ViewData["Title"] = "UpdateCategory";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Rezervasyon İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Yeni Rezervasyon Girşi</div>
+                        </div>
+
+                        <input type="hidden" asp-for="BookingID"/>
+                          
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Name">Ad Soyad</label>
+                                <input type="text" class="form-control" asp-for="Name" id="Name" placeholder="Rezervasyon Adı">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="PhoneNumber">Telefon</label>
+                                <input type="text" class="form-control" asp-for="PhoneNumber" id="PhoneNumber" placeholder="Rezervasyon Numarası">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Email">Mail Adresi</label>
+                                <input type="text" class="form-control" asp-for="Email" id="Email" placeholder="Rezervasyon Maili">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="PersonCount">Kişi Sayısı</label>
+                                <input type="text" class="form-control" asp-for="PersonCount" id="PersonCount" placeholder="Rezervasyon Kişi Sayısı">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Date">Rezervasyon Tarihi</label>
+                                <input type="text" class="form-control" asp-for="Date" id="Date" placeholder="Rezervasyon Tarihi">
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn btn-info">Rezervasyonu Güncelle</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+

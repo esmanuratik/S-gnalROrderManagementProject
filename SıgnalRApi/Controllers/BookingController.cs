@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Abstract;
+﻿using AutoMapper;
+using BusinessLayer.Abstract;
 using DtoLayer.BookingDTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,69 +11,128 @@ namespace SıgnalRApi.Controllers
     [ApiController]
     public class BookingController : ControllerBase
     {
-        private readonly IBookingService _bookingService;
+        //private readonly IBookingService _bookingService;
 
-        public BookingController(IBookingService bookingService)
+        //public BookingController(IBookingService bookingService)
+        //{
+        //    _bookingService = bookingService;
+        //}
+
+        ////rezervasyonlara durum ataması yapılacak: rezervasyon alındı , rezervasyon iptal edildi , rezervasyon geçmiş vs
+
+        //[HttpGet]
+        //public IActionResult BookingList()
+        //{
+        //    var values=_bookingService.GetListAllAsync();
+        //    return Ok(values);
+        //}
+        //[HttpPost]
+        //public IActionResult CreateBooking(CreateBookingDto createBookingDto)
+        //{
+        //    Booking booking = new Booking() 
+        //    { 
+        //        Email = createBookingDto.Email, 
+        //        Name = createBookingDto.Name,
+        //        PhoneNumber = createBookingDto.PhoneNumber,
+        //        Date=createBookingDto.Date,
+        //        PersonCount = createBookingDto.PersonCount,
+        //    };
+        //    _bookingService.AddAsync(booking);
+
+        //    return Ok("Rezervasyon Başarı ile Yapıldı.");
+        //}
+
+        //[HttpDelete("{id}")]
+        //public IActionResult DeleteBooking(int id)
+        //{
+        //   var value= _bookingService.GetByIdAsync(id);
+        //   _bookingService.DeleteAsync(value);
+
+        //    return Ok("Rezervasyon Başarı ile Silinmiştir.");
+        //}
+
+        //[HttpPut]
+        //public IActionResult UpdateBooking(UpdateBookingDto updateBookingDto) 
+        //{
+        //    Booking booking = new Booking() 
+        //    {  
+        //        BookingID = updateBookingDto.BookingID,
+        //        Date=updateBookingDto.Date,
+        //        Name = updateBookingDto.Name,
+        //        PhoneNumber = updateBookingDto.PhoneNumber,
+        //        Email = updateBookingDto.Email,
+        //        PersonCount=updateBookingDto.PersonCount,
+        //    };
+        //    _bookingService.UpdateAsync(booking);
+
+        //    return Ok("Rezervasyonunuz Başarı ile Güncellenmiştir.");
+        //}
+
+        //[HttpGet("{id}")]
+        //public IActionResult GetBooking(int id)
+        //{
+        //    var value=_bookingService.GetByIdAsync(id);
+
+        //    return Ok(value);
+        //}
+
+        private readonly IBookingService _bookingService;
+        private readonly IMapper _mapper;
+
+        public BookingController(IBookingService bookingService, IMapper mapper)
         {
             _bookingService = bookingService;
+            _mapper = mapper;
         }
-
-        //rezervasyonlara durum ataması yapılacak: rezervasyon alındı , rezervasyon iptal edildi , rezervasyon geçmiş vs
-
         [HttpGet]
         public IActionResult BookingList()
         {
-            var values=_bookingService.GetListAllAsync();
-            return Ok(values);
+            var value = _mapper.Map<List<ResultBookingDto>>(_bookingService.GetListAllAsync());
+            return Ok(value);
         }
         [HttpPost]
         public IActionResult CreateBooking(CreateBookingDto createBookingDto)
         {
-            Booking booking = new Booking() 
-            { 
-                Email = createBookingDto.Email, 
-                Name = createBookingDto.Name,
-                PhoneNumber = createBookingDto.PhoneNumber,
-                Date=createBookingDto.Date,
-                PersonCount = createBookingDto.PersonCount,
-            };
-            _bookingService.AddAsync(booking);
+            _bookingService.AddAsync(new Booking()
+            {
+             Date = createBookingDto.Date,
+             Email = createBookingDto.Email,
+             Name = createBookingDto.Name,
+             PersonCount = createBookingDto.PersonCount,
+             PhoneNumber = createBookingDto.PhoneNumber
 
-            return Ok("Rezervasyon Başarı ile Yapıldı.");
+            });
+            return Ok("Rezervasyon başarıyla eklendi");
         }
-
         [HttpDelete("{id}")]
         public IActionResult DeleteBooking(int id)
         {
-           var value= _bookingService.GetByIdAsync(id);
-           _bookingService.DeleteAsync(value);
+            var value = _bookingService.GetByIdAsync(id);
+            _bookingService.DeleteAsync(value);
 
-            return Ok("Rezervasyon Başarı ile Silinmiştir.");
+            return Ok("Rezervasyon başarıyla silindi.");
+
         }
-
-        [HttpPut]
-        public IActionResult UpdateBooking(UpdateBookingDto updateBookingDto) 
-        {
-            Booking booking = new Booking() 
-            {  
-                BookingID = updateBookingDto.BookingID,
-                Date=updateBookingDto.Date,
-                Name = updateBookingDto.Name,
-                PhoneNumber = updateBookingDto.PhoneNumber,
-                Email = updateBookingDto.Email,
-                PersonCount=updateBookingDto.PersonCount,
-            };
-            _bookingService.UpdateAsync(booking);
-
-            return Ok("Rezervasyonunuz Başarı ile Güncellenmiştir.");
-        }
-
         [HttpGet("{id}")]
         public IActionResult GetBooking(int id)
         {
-            var value=_bookingService.GetByIdAsync(id);
-
+            var value = _bookingService.GetByIdAsync(id);
             return Ok(value);
+        }
+        [HttpPut]
+        public IActionResult UpdateBooking(UpdateBookingDto updateBookingDto)
+        {
+            _bookingService.UpdateAsync(new Booking()
+            {
+               BookingID = updateBookingDto.BookingID,
+               Email = updateBookingDto.Email,
+               Name = updateBookingDto.Name,
+               PersonCount = updateBookingDto.PersonCount,
+               PhoneNumber = updateBookingDto.PhoneNumber
+               
+            });
+
+            return Ok("Rezervasyon başarıyla güncellendi");
         }
     }
 }
