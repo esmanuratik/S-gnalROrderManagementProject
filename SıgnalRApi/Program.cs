@@ -3,6 +3,7 @@ using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using SıgnalRApi.Hubs;
 using System.Reflection;
 
 namespace SıgnalRApi
@@ -12,6 +13,20 @@ namespace SıgnalRApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            //Cors Politikası ekleme işlemi (SignalR için)
+            builder.Services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", builder => //Bir tane Cors Politikası ekledim ve genel olarak bu CorsPolicy olarak adlandırılıyor.
+                {
+                    builder.AllowAnyHeader() //Herhangi bir başlığa izin ver.
+                    .AllowAnyMethod() //Herhangi bir methoda izin ver.
+                    .SetIsOriginAllowed((host)=>true) // Gelen herhnangi bir kayanağa tarayıcıya izin ver.
+                    .AllowCredentials(); //Dışarıdan gelen herhangi bir kimliğe de izin ver. 
+                });
+            });
+            //SıgnalR dahil edilmesi
+            builder.Services.AddSignalR(); // Aşağıda da app.UseCors("CorsPolicy"); şeklide ekleyip tamamlıyorum.
 
             builder.Services.AddDbContext<SignalRContext>();
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());//Mapleme işlemi yaptığımı ve bunu burada belli ediyorum.
@@ -61,12 +76,17 @@ namespace SıgnalRApi
                 app.UseSwaggerUI();
             }
 
+            app.UseCors("CorsPolicy"); //Cors Politikasını ekliyorum.
+            
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
 
             app.MapControllers();
+
+            app.MapHub<SignalRHub>("/signalrhub"); //Diyelim ki bir yere istekte bulunuyoruz örneğin normalde bu şekilde istekde bulunuyordum localhost://1234/swagger/category/index  localhost://1234/signalrhub  sınıfına istekte bulunacağım için buraya bu şekilde bir endpoint eklemesi yapıyorum.
+
 
             app.Run();
         }
