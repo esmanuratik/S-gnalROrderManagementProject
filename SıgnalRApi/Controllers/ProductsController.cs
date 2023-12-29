@@ -13,12 +13,12 @@ namespace SıgnalRApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
-		public ProductController(IProductService productService, IMapper mapper)
+		public ProductsController(IProductService productService, IMapper mapper)
 		{
 			_productService = productService;
 			_mapper = mapper;
@@ -30,8 +30,42 @@ namespace SıgnalRApi.Controllers
             var value = _mapper.Map<List<ResultProductDto>>(_productService.GetListAllAsync());
             return Ok(value);
         }
-
-        [HttpGet("{id}")]
+        [HttpGet("ProductCount")]
+        public IActionResult ProductCount() 
+        {
+            return Ok(_productService.ProductCountAsync());
+        }
+		[HttpGet("ProductCountByHamburger")]
+		public IActionResult ProductCountByCategoryNameHamburger()
+		{
+			return Ok(_productService.ProductCountByCategoryNameHamburgerAsync());
+		}
+		[HttpGet("ProductCountByDrink")]
+		public IActionResult ProductCountByCategoryNameDrink()
+		{
+			return Ok(_productService.ProductCountByCategoryNameDrinkAsync());
+		}
+		[HttpGet("ProductPriceAvg")]
+		public IActionResult ProductPriceAvg()
+		{
+			return Ok(_productService.ProductPriceAvgAsync());
+		}
+		[HttpGet("ProductNameByMinPrice")]
+		public IActionResult ProductNameByMinPrice()
+		{
+			return Ok(_productService.ProductNameByMinPriceAsync());
+		}
+		[HttpGet("ProductNameByMaxPrice")]
+		public IActionResult ProductNameByMaxPrice()
+		{
+			return Ok(_productService.ProductNameByMaxPriceAsync());
+		}
+		[HttpGet("ProductAvgPriceByHamburger")]
+		public IActionResult ProductAvgPriceByHamburger()
+		{
+			return Ok(_productService.ProductAvgPriceByHamburgerAsync());
+		}
+		[HttpGet("{id}")]
         public IActionResult GetProduct(int id)
         {
             var value = _productService.GetByIdAsync(id);

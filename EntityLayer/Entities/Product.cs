@@ -1,4 +1,6 @@
-﻿namespace SıgnalRApi.DAL.Entities
+﻿using EntityLayer.Entities;
+
+namespace SıgnalRApi.DAL.Entities
 {
     /// <summary>
     /// Ürünler burada tutulacak
@@ -38,5 +40,7 @@
         public int CategoryID { get; set; }
         //Bire çok ilişki olduğunu belirtmek için de 
         public Category Category { get; set; }
+
+        public List<OrderDetail> OrderDetails { get; set; }
     }
 }

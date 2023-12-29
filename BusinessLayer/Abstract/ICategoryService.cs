@@ -9,5 +9,9 @@ namespace BusinessLayer.Abstract
 {
     public interface ICategoryService: IGenericService<Category>
     {
-    }
+		public int CategoryCountAsync();
+		public int ActiveCategoryCountAsync();
+		public int PassiveCategoryCountAsync();
+
+	}
 }

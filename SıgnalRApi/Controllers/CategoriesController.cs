@@ -9,12 +9,12 @@ namespace SıgnalRApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
 
-        public CategoryController(ICategoryService categoryService, IMapper mapper)
+        public CategoriesController(ICategoryService categoryService, IMapper mapper)
         {
             _categoryService = categoryService;
             _mapper = mapper;
@@ -25,7 +25,24 @@ namespace SıgnalRApi.Controllers
             var value = _mapper.Map<List<ResultCategoryDto>>(_categoryService.GetListAllAsync());
             return Ok(value);
         }
-        [HttpPost]  
+        
+        [HttpGet("CategoryCount")]
+        public IActionResult CategoryCount() 
+        {
+            return Ok(_categoryService.CategoryCountAsync());
+        }
+		[HttpGet("ActiveCategoryCount")]
+		public IActionResult ActiveCategoryCount()
+		{
+			return Ok(_categoryService.ActiveCategoryCountAsync());
+		}
+		[HttpGet("PassiveCategoryCount")]
+		public IActionResult PassiveCategoryCount()
+		{
+			return Ok(_categoryService.PassiveCategoryCountAsync());
+		}
+
+		[HttpPost]  
         public IActionResult CreateCategory(CreateCategoryDto createCategoryDto)
         {
             _categoryService.AddAsync(new Category()

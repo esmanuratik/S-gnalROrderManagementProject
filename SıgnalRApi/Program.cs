@@ -58,11 +58,18 @@ namespace SıgnalRApi
             builder.Services.AddScoped<ITestimonialService, TestimonialService>();
             builder.Services.AddScoped<ITestimonialDal, EFTestimonialDal>();
 
+			builder.Services.AddScoped<IOrderService, OrderService>();
+			builder.Services.AddScoped<IOrderDal, EFOrderDal>();
+
+			builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
+			builder.Services.AddScoped<IOrderDetailDal, EFOrderDetailDal>();
 
 
-            // Add services to the container.
 
-            builder.Services.AddControllers();
+
+			// Add services to the container.
+
+			builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

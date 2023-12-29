@@ -43,7 +43,43 @@ namespace BusinessLayer.Concrete
             return _productDal.GetProductsWithCategories();
         }
 
-        public void UpdateAsync(Product entity)
+		public int ProductCountAsync()
+		{
+			return _productDal.ProductCount();
+		}
+
+		public int ProductCountByCategoryNameDrinkAsync()
+		{
+  			return _productDal.ProductCountByCategoryNameDrink();
+		}
+
+		public int ProductCountByCategoryNameHamburgerAsync()
+		{
+			return _productDal.ProductCountByCategoryNameHamburger();
+		}
+
+		public string ProductNameByMaxPriceAsync()
+		{
+			return _productDal.ProductNameByMaxPrice();
+		}
+
+		public string ProductNameByMinPriceAsync()
+		{
+			return _productDal.ProductNameByMinPrice();
+		}
+
+		//Fiyatların Ortalamasını alıyoruz
+		public decimal ProductPriceAvgAsync()
+		{
+			return _productDal.ProductPriceAvg();
+		}
+		//Hamburger Fiyatlarının Ortalamasını Alıyoruz
+		public decimal ProductAvgPriceByHamburgerAsync()
+		{
+			return _productDal.ProductAvgPriceByHamburger();
+		}
+
+		public void UpdateAsync(Product entity)
         {
             _productDal.Update(entity);
         }

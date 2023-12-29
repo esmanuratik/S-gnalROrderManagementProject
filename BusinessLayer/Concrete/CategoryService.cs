@@ -17,12 +17,27 @@ namespace BusinessLayer.Concrete
         {
             _categoryDal = categoryDal;
         }
-        public void AddAsync(Category entity)
+
+		public int ActiveCategoryCountAsync()
+		{
+			return _categoryDal.ActiveCategoryCount();
+		}
+		public int PassiveCategoryCountAsync()
+		{
+			return _categoryDal.PassiveCategoryCount();
+		}
+
+		public void AddAsync(Category entity)
         {
             _categoryDal.Add(entity);  
         }
 
-        public void DeleteAsync(Category entity)
+		public int CategoryCountAsync()
+		{
+			return _categoryDal.CategoryCount();//Dal katmanında var olan metot
+		}
+
+		public void DeleteAsync(Category entity)
         {
             _categoryDal.Delete(entity);
         }
@@ -37,7 +52,7 @@ namespace BusinessLayer.Concrete
             return _categoryDal.GetListAll();
         }
 
-        public void UpdateAsync(Category entity)
+		public void UpdateAsync(Category entity)
         {
             _categoryDal.Update(entity);
         }

@@ -11,12 +11,12 @@ namespace SıgnalRApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TestimonialController : ControllerBase
+    public class TestimonialsController : ControllerBase
     {
         private readonly ITestimonialService _testimonialService;
         private readonly IMapper _mapper;
 
-		public TestimonialController(ITestimonialService testimonialService, IMapper mapper)
+		public TestimonialsController(ITestimonialService testimonialService, IMapper mapper)
 		{
 			_testimonialService = testimonialService;
 			_mapper = mapper;

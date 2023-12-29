@@ -11,12 +11,12 @@ namespace SıgnalRApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SocialMediaController : ControllerBase
+    public class SocialMediasController : ControllerBase
     {
         private readonly ISocialMediaService _socialMediaService;
         private readonly IMapper _mapper;
 
-        public SocialMediaController(ISocialMediaService socialMediaService, IMapper mapper)
+        public SocialMediasController(ISocialMediaService socialMediaService, IMapper mapper)
         {
             _socialMediaService = socialMediaService;
             _mapper = mapper;
