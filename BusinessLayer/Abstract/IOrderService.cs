@@ -13,5 +13,6 @@ namespace BusinessLayer.Abstract
 		int TotalOrderCountAsync();
 		int ActiveOrderCountAsync();
 		decimal LastOrderPriceAsync();
+		decimal TodayTotalPriceAsync();
 	}
 }

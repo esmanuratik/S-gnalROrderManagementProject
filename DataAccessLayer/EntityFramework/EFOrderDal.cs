@@ -28,6 +28,13 @@ namespace DataAccessLayer.EntityFramework
 			return context.Orders.OrderByDescending(x=>x.OrderID).Take(1).Select(y=>y.TotalPrice).FirstOrDefault();
 		}
 
+		public decimal TodayTotalPrice()
+		{
+			//using var context=new SignalRContext();
+			//return context.Orders.Where(x=>x.OrderDate==DateTime.Parse(DateTime.Now.ToShortDateString())).Sum(y=>y.TotalPrice);//Sadece tarih kısmını alması için böyle yapıyoruz.
+			return 0;
+		} 
+
 		public int TotalOrderCount()
 		{
 			using var context = new SignalRContext();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,9 @@ namespace EntityLayer.Entities
 		/// <summary>
 		/// Sipariş Tarihi
 		/// </summary>
-		public DateTime Date { get; set; }
+
+		[Column(TypeName ="Date")]
+		public DateTime  OrderDate { get; set; }
 		/// <summary>
 		/// Toplam Fiyat
 		/// </summary>

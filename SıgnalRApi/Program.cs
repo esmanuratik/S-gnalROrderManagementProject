@@ -25,6 +25,8 @@ namespace SıgnalRApi
                     .AllowCredentials(); //Dışarıdan gelen herhangi bir kimliğe de izin ver. 
                 });
             });
+
+
             //SıgnalR dahil edilmesi
             builder.Services.AddSignalR(); // Aşağıda da app.UseCors("CorsPolicy"); şeklide ekleyip tamamlıyorum.
 
@@ -63,6 +65,12 @@ namespace SıgnalRApi
 
 			builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
 			builder.Services.AddScoped<IOrderDetailDal, EFOrderDetailDal>();
+
+			builder.Services.AddScoped<IMoneyCaseService, MoneyCaseService>();
+			builder.Services.AddScoped<IMoneyCaseDal, EFMoneyCaseDal>();
+
+			builder.Services.AddScoped<IMenuTableService, MenuTableService>();
+			builder.Services.AddScoped<IMenuTableDal, EFMenuTableDal>();
 
 
 

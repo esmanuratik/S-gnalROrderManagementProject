@@ -29,5 +29,11 @@ namespace SıgnalRApi.Controllers
 		{
 			return Ok(_orderService.LastOrderPriceAsync());
 		}
+		[HttpGet("TodayTotalPrice")]
+		public IActionResult TodayTotalPrice()
+		{
+			return Ok(_orderService.TodayTotalPriceAsync());
+		}
+
 	}
 }

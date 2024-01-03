@@ -49,6 +49,11 @@ namespace BusinessLayer.Concrete
 			return _orderDal.LastOrderPrice();
 		}
 
+		public decimal TodayTotalPriceAsync()
+		{
+			return _orderDal.TodayTotalPrice();
+		}
+
 		public int TotalOrderCountAsync()
 		{
 			return _orderDal.TotalOrderCount();
