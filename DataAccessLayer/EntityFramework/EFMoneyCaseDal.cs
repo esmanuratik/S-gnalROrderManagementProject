@@ -16,7 +16,10 @@ namespace DataAccessLayer.EntityFramework
 		public EFMoneyCaseDal(SignalRContext context) : base(context)
 		{
 		}
-
+		/// <summary>
+		/// Kasadaki toplam miktarı veren metot
+		/// </summary>
+		/// <returns></returns>
 		public decimal TotalMoneyCaseAmount()
 		{
 			using var context=new SignalRContext();
