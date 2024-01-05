@@ -89,6 +89,20 @@ namespace SıgnalRApi.Hubs
 			await Clients.All.SendAsync("ReceiveMenuTableCount", value16);
 
 		}
+		public async Task SendProgress()
+		{
+			//Kasadaki Toplam Tutar
+			var value = _moneyCaseService.TotalMoneyCaseAmountAsync();
+			await Clients.All.SendAsync("ReceiveTotalMoneyCaseAmount",value.ToString("0.00") + "₺");
+
+			//Aktif Sipariş Sayısı
+			var value2 = _orderService.ActiveOrderCountAsync();
+			await Clients.All.SendAsync("ReceiveActiveOrderCount", value2);
+
+			//Aktif Masa Sayısı
+			var value3 = _menuTableService.MenuTableCountAsync();
+			await Clients.All.SendAsync("ReceiveMenuTableCount",value3);
+		}
 
 	}
 }

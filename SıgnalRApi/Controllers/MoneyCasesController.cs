@@ -15,7 +15,7 @@ namespace SıgnalRApi.Controllers
 		{
 			_moneyCaseService = moneyCaseService;
 		}
-		[HttpGet]
+		[HttpGet("TotalMoneyCaseAmount")]
 		public IActionResult TotalMoneyCaseAmount()
 		{
 			return Ok(_moneyCaseService.TotalMoneyCaseAmountAsync());
