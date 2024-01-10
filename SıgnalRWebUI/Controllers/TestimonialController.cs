@@ -17,7 +17,7 @@ namespace SıgnalRWebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();//istemci oluşturdum
-            var responseMessage = await client.GetAsync("https://localhost:7001/api/Testimonial");//GetAsync HttpClient da var olan metot.Nereye Get isteğinde bulunacaksam orada var olan adresi alıyorum. 
+            var responseMessage = await client.GetAsync("https://localhost:7001/api/Testimonials");//GetAsync HttpClient da var olan metot.Nereye Get isteğinde bulunacaksam orada var olan adresi alıyorum. 
 
             if (responseMessage.IsSuccessStatusCode) //Eğer  responseMessage başarılı durum koduna sahipse -->
             {
@@ -45,7 +45,7 @@ namespace SıgnalRWebUI.Controllers
 
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");//jsona dönüştürdüğüm veriyi encoding ile türkçe karakter almasını sağladığım yapı.
 
-            var responseMessage = await client.PostAsync("https://localhost:7001/api/Testimonial", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7001/api/Testimonials", stringContent);
 
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -57,7 +57,7 @@ namespace SıgnalRWebUI.Controllers
         public async Task<IActionResult> DeleteTestimonial(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7001/api/Testimonial/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7001/api/Testimonials/{id}");
 
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -69,7 +69,7 @@ namespace SıgnalRWebUI.Controllers
         public async Task<IActionResult> UpdateTestimonial(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7001/api/Testimonial/{id}");//İlk olarak güncellemem gereken id yi bulmalıyım.
+            var responseMessage = await client.GetAsync($"https://localhost:7001/api/Testimonials/{id}");//İlk olarak güncellemem gereken id yi bulmalıyım.
 
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -86,7 +86,7 @@ namespace SıgnalRWebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateTestimonialDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");//jsona dönüştürüp encoding ile türkçe karakter almasını sağladığım yapı.
-            var responseMessage = await client.PutAsync("https://localhost:7001/api/Testimonial", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7001/api/Testimonials", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
