@@ -72,12 +72,15 @@ namespace SıgnalRApi
 			builder.Services.AddScoped<IMenuTableService, MenuTableService>();
 			builder.Services.AddScoped<IMenuTableDal, EFMenuTableDal>();
 
+            builder.Services.AddScoped<ISliderService, SliderService>();
+            builder.Services.AddScoped<ISliderDal, EFSliderDal>();
 
 
 
-			// Add services to the container.
 
-			builder.Services.AddControllers();
+            // Add services to the container.
+
+            builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
