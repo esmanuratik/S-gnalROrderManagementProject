@@ -136,13 +136,14 @@
 
 
 
-  @*   //Ajax İle Alert Verme İşlemi  *@
-    <script>
+  @*   //Ajax İle Tıkladığımız Ürüne Alert Verme İşlemi  *@
+
+   @*  <script>
         function showproductid(value) {
             var id = value;
             $.ajax({
                 type: 'post',
-                data: { item: id },
+                data: { item: id }, //item döngüden gelen değer
                 contentType: 'json',
                 success: function () {
                     // alert('Tıkladığınız Ürün ID Değeri' + id);
@@ -150,10 +151,25 @@
                 }
             });
         }
+    </script> *@
+
+    <script>
+        function showproductid(value) {
+            var id = value;
+            $.ajax({
+                type: 'post',
+                url: '/Menu/AddBasket/'+ id,
+                data: { item: id },
+                contentType: 'json',
+                success: function () {
+                    // alert('Tıkladığınız Ürün ID Değeri' + id);
+                    swal("Seçilen Ürün ID: " + id, "Seçtiğiniz Ürün Sepete Eklendi!", "success");
+                }
+            });
+        }
     </script>
-
-
     @* //SweetAlert Message  *@
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </body>

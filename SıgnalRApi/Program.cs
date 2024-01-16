@@ -5,6 +5,7 @@ using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using SıgnalRApi.Hubs;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 namespace SıgnalRApi
 {
@@ -21,7 +22,7 @@ namespace SıgnalRApi
                 {
                     builder.AllowAnyHeader() //Herhangi bir başlığa izin ver.
                     .AllowAnyMethod() //Herhangi bir methoda izin ver.
-                    .SetIsOriginAllowed((host)=>true) // Gelen herhnangi bir kayanağa tarayıcıya izin ver.
+                    .SetIsOriginAllowed((host) => true) // Gelen herhnangi bir kayanağa tarayıcıya izin ver.
                     .AllowCredentials(); //Dışarıdan gelen herhangi bir kimliğe de izin ver. 
                 });
             });
@@ -34,10 +35,10 @@ namespace SıgnalRApi
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());//Mapleme işlemi yaptığımı ve bunu burada belli ediyorum.
 
             builder.Services.AddScoped<IAboutService, AboutService>();
-            builder.Services.AddScoped<IAboutDal,EFAboutDal>();
+            builder.Services.AddScoped<IAboutDal, EFAboutDal>();
 
-            builder.Services.AddScoped<IBookingService,BookingService>();   
-            builder.Services.AddScoped<IBookingDal,EFBookingDal>();
+            builder.Services.AddScoped<IBookingService, BookingService>();
+            builder.Services.AddScoped<IBookingDal, EFBookingDal>();
 
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<ICategoryDal, EFCategoryDal>();
@@ -60,23 +61,27 @@ namespace SıgnalRApi
             builder.Services.AddScoped<ITestimonialService, TestimonialService>();
             builder.Services.AddScoped<ITestimonialDal, EFTestimonialDal>();
 
-			builder.Services.AddScoped<IOrderService, OrderService>();
-			builder.Services.AddScoped<IOrderDal, EFOrderDal>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
+            builder.Services.AddScoped<IOrderDal, EFOrderDal>();
 
-			builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
-			builder.Services.AddScoped<IOrderDetailDal, EFOrderDetailDal>();
+            builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
+            builder.Services.AddScoped<IOrderDetailDal, EFOrderDetailDal>();
 
-			builder.Services.AddScoped<IMoneyCaseService, MoneyCaseService>();
-			builder.Services.AddScoped<IMoneyCaseDal, EFMoneyCaseDal>();
+            builder.Services.AddScoped<IMoneyCaseService, MoneyCaseService>();
+            builder.Services.AddScoped<IMoneyCaseDal, EFMoneyCaseDal>();
 
-			builder.Services.AddScoped<IMenuTableService, MenuTableService>();
-			builder.Services.AddScoped<IMenuTableDal, EFMenuTableDal>();
+            builder.Services.AddScoped<IMenuTableService, MenuTableService>();
+            builder.Services.AddScoped<IMenuTableDal, EFMenuTableDal>();
 
             builder.Services.AddScoped<ISliderService, SliderService>();
             builder.Services.AddScoped<ISliderDal, EFSliderDal>();
 
+            builder.Services.AddScoped<IBasketService, BasketService>();
+            builder.Services.AddScoped<IBasketDal, EFBasketDal>();
 
-
+            //Cycle Was Detected Hatası ve Çözümü (Json ı dönüştürememe hatası include ekledikten sonra )
+            builder.Services.AddControllersWithViews()
+           .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
             // Add services to the container.
 
@@ -95,7 +100,7 @@ namespace SıgnalRApi
             }
 
             app.UseCors("CorsPolicy"); //Cors Politikasını ekliyorum.
-            
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

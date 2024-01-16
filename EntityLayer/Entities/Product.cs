@@ -40,7 +40,7 @@ namespace SıgnalRApi.DAL.Entities
         public int CategoryID { get; set; }
         //Bire çok ilişki olduğunu belirtmek için de 
         public Category Category { get; set; }
-
         public List<OrderDetail> OrderDetails { get; set; }
+        public List<Basket> Baskets { get; set; }
     }
 }
