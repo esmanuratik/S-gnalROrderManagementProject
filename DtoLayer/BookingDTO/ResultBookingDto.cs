@@ -19,6 +19,7 @@ namespace DtoLayer.BookingDTO
         /// Rezervasyon Adı
         /// </summary>
         public string Name { get; set; }
+        public string Description { get; set; } 
         /// <summary>
         /// Rezervasyon Telefon Numarası
         /// </summary>

@@ -2,7 +2,7 @@
 
 namespace SıgnalRWebUI.ViewComponents.DefaultComponents
 {
-    public class _DefaultBookTableComponentPartial:ViewComponent
+    public class _DefaultBookATableComponentPartial:ViewComponent
     {
         public IViewComponentResult Invoke()
         {

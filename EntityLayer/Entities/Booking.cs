@@ -18,6 +18,10 @@
         /// </summary>
         public string PhoneNumber { get; set; }
         /// <summary>
+        /// Rezervasyon Durumu
+        /// </summary>
+        public string Description { get; set; }
+        /// <summary>
         /// Rezervasyon Maili
         /// </summary>
         public string Email { get; set; }

@@ -43,6 +43,5 @@ namespace SıgnalRWebUI.Controllers
             }
             return NoContent();
         }
-
     }
 }

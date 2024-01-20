@@ -40,20 +40,17 @@ namespace SıgnalRWebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateBooking(CreateBookingDto createBookingDto)
         {
-            var client = _httpClientFactory.CreateClient();//istemci oluşturdum
+            createBookingDto.Description = "Rezervasyon Alındı";
+            var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createBookingDto);
-
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");//jsona dönüştürdüğüm veriyi encoding ile türkçe karakter almasını sağladığım yapı.
-
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7001/api/Bookings", stringContent);
-
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
             return View();
         }
-
         public async Task<IActionResult> DeleteBooking(int id)
         {
             var client = _httpClientFactory.CreateClient();
@@ -93,7 +90,6 @@ namespace SıgnalRWebUI.Controllers
                 return RedirectToAction("Index");
             }
             return View();
-
         }
     }
 }
