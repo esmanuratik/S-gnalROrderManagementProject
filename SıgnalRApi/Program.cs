@@ -79,8 +79,11 @@ namespace SıgnalRApi
             builder.Services.AddScoped<IBasketService, BasketService>();
             builder.Services.AddScoped<IBasketDal, EFBasketDal>();
 
-            //Cycle Was Detected Hatası ve Çözümü (Json ı dönüştürememe hatası include ekledikten sonra )
-            builder.Services.AddControllersWithViews()
+			builder.Services.AddScoped<INotificationService, NotificationService>();
+			builder.Services.AddScoped<INotificationDal, EFNotificationDal>();
+
+			//Cycle Was Detected Hatası ve Çözümü (Json ı dönüştürememe hatası include ekledikten sonra )
+			builder.Services.AddControllersWithViews()
            .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
             // Add services to the container.
