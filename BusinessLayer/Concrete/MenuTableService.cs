@@ -20,22 +20,22 @@ namespace BusinessLayer.Concrete
 
 		public void AddAsync(MenuTable entity)
 		{
-			throw new NotImplementedException();
+			_menuTableDal.Add(entity);
 		}
 
 		public void DeleteAsync(MenuTable entity)
 		{
-			throw new NotImplementedException();
+			_menuTableDal.Delete(entity);
 		}
 
 		public MenuTable GetByIdAsync(int id)
 		{
-			throw new NotImplementedException();
+			return _menuTableDal.GetById(id);
 		}
 
 		public List<MenuTable> GetListAllAsync()
 		{
-			throw new NotImplementedException();
+			return _menuTableDal.GetListAll();
 		}
 
 		public int MenuTableCountAsync()
@@ -45,7 +45,7 @@ namespace BusinessLayer.Concrete
 
 		public void UpdateAsync(MenuTable entity)
 		{
-			throw new NotImplementedException();
+			_menuTableDal.Update(entity);
 		}
 	}
 }

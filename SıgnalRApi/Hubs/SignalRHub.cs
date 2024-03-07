@@ -33,9 +33,10 @@ namespace SıgnalRApi.Hubs
 		{
 			// Kategori sayısını anlık olarak getiren SignalR metodu
 			var value = _categoryService.CategoryCountAsync();
+
 			await Clients.All.SendAsync("ReceiveCategoryCount", value);  //SignalR kullanımına özel bir yapı. 
-																		 //Burada gelen değeri client tarafına göndereceğim.ReceiveCategoryCount ismini ben verdim kategoriden gelen değeri                              almak anlamındadır.
-																		 //Client tarafına geldiğim zaman SendCategoryCount metodunu çağıracağım.Bu metoda invoke ile istek at bu metodun                                içindeki ReceiveCategoryCount olarak yazdığım ifadeyi kullan.Abonelik olarak da anlatılır genel olarak bu durumda                            SendCategoryCount a abone olup  ReceiveCategoryCount kullanmış olacağım.
+																		 //Burada gelen değeri client tarafına göndereceğim.ReceiveCategoryCount ismini ben verdim kategoriden gelen değeri almak anlamındadır.
+																		 //Client tarafına geldiğim zaman SendCategoryCount metodunu çağıracağım.Bu metoda invoke ile istek at bu metodun içindeki ReceiveCategoryCount olarak yazdığım ifadeyi kullan.Abonelik olarak da anlatılır genel olarak bu durumda SendCategoryCount a abone olup ReceiveCategoryCount kullanmış olacağım.
 
 			//Ürün sayısını anlık olarak getiren SignalR metodu
 			var value2 = _productService.ProductCountAsync();
@@ -119,6 +120,13 @@ namespace SıgnalRApi.Hubs
 
 			var notificationListByFalse=_notificationService.GetAllNotificationListByFalseAsync();
 			await Clients.All.SendAsync("ReceiveNotificationListByFalse", notificationListByFalse);
+		}
+		public async Task GetMenuTableStatus()
+		{
+			//Masaların dolu boş olma durumu için yazılan metot
+
+			var value = _menuTableService.GetListAllAsync();
+			await Clients.All.SendAsync("ReceiveMenuTableStatus",value);
 		}
 
 	}
