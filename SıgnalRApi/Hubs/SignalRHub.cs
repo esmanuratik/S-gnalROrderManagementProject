@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using Microsoft.AspNetCore.SignalR;
+using System.Runtime.ConstrainedExecution;
 
 namespace SıgnalRApi.Hubs
 {
@@ -28,8 +29,10 @@ namespace SıgnalRApi.Hubs
 			_bookingService = bookingService;
 			_notificationService = notificationService;
 		}
+		public static int clientCount { get; set; } = 0; //Static modifikatörü bu özelliğin sınıfa özgü olduğunu yani bir sınıfın bir örneği olmadan erişilebileceğini belirtir. Bu durumda clientCount özelliği sınıfa aittir ve sınıfın bir örneği olmadan erişilebilir.
+        //Bu da clientCountun sınıfın tüm öğeleri arasında paylaşılmasını ve tüm öğeleri tarafından aynı değere sahip olmasını sağlar.Bu özellik sayesinde sınıf düzeyinde sayıcılar ve durum takibi yapabilmek için kullanabiliriz.Static olmadığında bu yüzden sayfayı her yinelediğimizde her sayfa için 1 değeri geliyordu.
 
-		public async Task SendStatistic()//Genellikle Send ile adlandırılır.
+        public async Task SendStatistic()//Genellikle Send ile adlandırılır.
 		{
 			// Kategori sayısını anlık olarak getiren SignalR metodu
 			var value = _categoryService.CategoryCountAsync();
@@ -133,6 +136,22 @@ namespace SıgnalRApi.Hubs
 			await Clients.All.SendAsync("ReceiveMessage",user,message);
 
 		}
+		//Anlık client sayılarını çekmek için yazılan metot
+		//Override yazdıktan sonra otomatik olarak geliyor metot
+		//Bu metot client a bağlı client sayısını getirir.
+		public override async Task OnConnectedAsync()
+		{
+			clientCount++;
+			await Clients.All.SendAsync("ReceiveClientCount", clientCount);
+			await base.OnConnectedAsync();
+		}
+		//Dışarıdan hata oluşabilmesine karşın iki metot birlikte kullanılıyor.
+        public override async Task OnDisconnectedAsync(Exception? exception)
+        {
+			clientCount--;
+			await Clients.All.SendAsync("ReceiveClientCount", clientCount);
+            await base.OnDisconnectedAsync(exception);
+        }
 
-	}
+    }
 }
