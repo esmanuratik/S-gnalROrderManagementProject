@@ -1,3 +1,6 @@
+using DataAccessLayer.Concrete;
+using EntityLayer.Entities;
+
 namespace SıgnalRWebUI
 {
     public class Program
@@ -8,6 +11,8 @@ namespace SıgnalRWebUI
             
 
             // Add services to the container.
+            builder.Services.AddDbContext<SignalRContext>();
+            builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<SignalRContext>();  //Identity için ekledik
             builder.Services.AddControllersWithViews();
             builder.Services.AddHttpClient();
             var app = builder.Build();
