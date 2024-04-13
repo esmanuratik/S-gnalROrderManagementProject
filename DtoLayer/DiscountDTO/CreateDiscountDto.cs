@@ -27,5 +27,9 @@ namespace DtoLayer.DiscountDTO
         /// Ürün Fotoğrafı
         /// </summary>
         public string ImageUrl { get; set; }
-    }
+		/// <summary>
+		/// Aktif Pasif Durumu
+		/// </summary>
+		public bool Status { get; set; }
+	}
 }

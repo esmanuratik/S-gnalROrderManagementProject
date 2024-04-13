@@ -76,11 +76,11 @@ namespace SıgnalRWebUI.Controllers
                 return View(values);
             }
             return View();
-
         }
         [HttpPost]
         public async Task<IActionResult> UpdateBooking(UpdateBookingDto updateBookingDto)
         {
+            
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateBookingDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");//jsona dönüştürüp encoding ile türkçe karakter almasını sağladığım yapı.
@@ -91,5 +91,21 @@ namespace SıgnalRWebUI.Controllers
             }
             return View();
         }
-    }
+        [HttpGet]
+        public async Task<IActionResult> BookingStatusApproved(int id)
+        {
+			var client = _httpClientFactory.CreateClient();   //istemci oluşturdum
+			var responseMessage = await client.GetAsync($"https://localhost:7001/api/Bookings/BookingStatusApproved/{id}");//GetAsync HttpClient da var olan metot.Nereye Get isteğinde bulunacaksam orada var olan adresi alıyorum. 
+
+			return RedirectToAction("Index");
+		}
+		[HttpGet]
+		public async Task<IActionResult> BookingStatusCancelled(int id)
+		{
+			var client = _httpClientFactory.CreateClient();   //istemci oluşturdum
+			var responseMessage = await client.GetAsync($"https://localhost:7001/api/Bookings/BookingStatusCanselled/{id}");//GetAsync HttpClient da var olan metot.Nereye Get isteğinde bulunacaksam orada var olan adresi alıyorum. 
+
+			return RedirectToAction("Index");
+		}
+	}
 }

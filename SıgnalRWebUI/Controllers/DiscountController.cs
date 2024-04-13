@@ -94,5 +94,19 @@ namespace SıgnalRWebUI.Controllers
             return View();
 
         }
-    }
+		public async Task<IActionResult> ChangeStatusToTrue(int id)
+		{
+			var client = _httpClientFactory.CreateClient();//istemci oluşturdum
+			var responseMessage = await client.GetAsync($"https://localhost:7001/api/Discounts/ChangeStatusToTrue/{id}");//GetAsync HttpClient da var olan metot.Nereye Get isteğinde bulunacaksam orada var olan adresi alıyorum. 	
+
+			return RedirectToAction("Index");
+		}
+		public async Task<IActionResult> ChangeStatusToFalse(int id)
+		{
+			var client = _httpClientFactory.CreateClient();//istemci oluşturdum
+			var responseMessage = await client.GetAsync($"https://localhost:7001/api/Discounts/ChangeStatusToFalse/{id}");//GetAsync HttpClient da var olan metot.Nereye Get isteğinde bulunacaksam orada var olan adresi alıyorum. 	
+			
+			return RedirectToAction("Index");
+		}
+	}
 }

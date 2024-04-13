@@ -23,7 +23,17 @@ namespace BusinessLayer.Concrete
             _bookingDal.Add(entity);
         }
 
-        public void DeleteAsync(Booking entity)
+		public void BookingStatusApprovedAsync(int id)
+		{
+			_bookingDal.BookingStatusApproved(id);
+		}
+
+		public void BookingStatusCanselledAsync(int id)
+		{
+			_bookingDal.BookingStatusCanselled(id);
+		}
+
+		public void DeleteAsync(Booking entity)
         {
             _bookingDal.Delete(entity);
         }

@@ -53,6 +53,7 @@ namespace SıgnalRApi.Controllers
             var value = _aboutService.GetByIdAsync(id);
             return Ok(value);
         }
+       
         [HttpPut]
         public IActionResult UpdateAbout(UpdateAboutDto updateCategoryDto)
         {

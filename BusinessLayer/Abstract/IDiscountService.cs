@@ -9,5 +9,7 @@ namespace BusinessLayer.Abstract
 {
     public interface IDiscountService: IGenericService<Discount>
     {
-    }
+		void ChangeStatusToTrueAsync(int id);
+		void ChangeStatusToFalseAsync(int id);
+	}
 }

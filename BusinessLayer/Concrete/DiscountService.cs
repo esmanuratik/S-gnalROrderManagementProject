@@ -23,7 +23,17 @@ namespace BusinessLayer.Concrete
             _discountDal.Add(entity);
         }
 
-        public void DeleteAsync(Discount entity)
+		public void ChangeStatusToFalseAsync(int id)
+		{
+			_discountDal.ChangeStatusToFalse(id);
+		}
+
+		public void ChangeStatusToTrueAsync(int id)
+		{
+			_discountDal.ChangeStatusToTrue(id);
+		}
+
+		public void DeleteAsync(Discount entity)
         {
             _discountDal.Delete(entity);
         }

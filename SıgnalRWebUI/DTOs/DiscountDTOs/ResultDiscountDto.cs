@@ -28,5 +28,6 @@ namespace SıgnalRWebUI.DTOs.DiscountDTOs
         /// Ürün Fotoğrafı
         /// </summary>
         public string ImageUrl { get; set; }
-    }
+		public bool Status { get; set; }
+	}
 }

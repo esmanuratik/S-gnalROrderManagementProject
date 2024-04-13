@@ -1,8 +1,8 @@
 ﻿namespace SıgnalRApi.DAL.Entities
 {
     /// <summary>
-/// Günün İndirimleri
-/// </summary>
+    /// Günün İndirimleri
+    /// </summary>
     public class Discount
     {
         public int DiscountID { get; set; }
@@ -22,5 +22,10 @@
         /// Ürün Fotoğrafı
         /// </summary>
         public string ImageUrl { get; set; }
+        /// <summary>
+        /// Aktif-Pasif Olma Durumu
+        /// </summary>
+        public bool Status { get; set; }
+
     }
 }

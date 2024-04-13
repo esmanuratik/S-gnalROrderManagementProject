@@ -15,5 +15,21 @@ namespace DataAccessLayer.EntityFramework
         public EFBookingDal(SignalRContext context) : base(context)
         {
         }
-    }
+
+		public void BookingStatusApproved(int id)
+		{
+			using var context = new SignalRContext();
+			var values = context.Bookings.Find(id);
+			values.Description = "Rezervasyon Alındı";
+			context.SaveChanges();
+		}
+
+		public void BookingStatusCanselled(int id)
+		{
+			using var context = new SignalRContext();
+			var values = context.Bookings.Find(id);
+			values.Description = "Rezervasyon İptal Edildi";
+			context.SaveChanges();
+		}
+	}
 }

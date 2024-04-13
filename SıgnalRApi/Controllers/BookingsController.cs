@@ -56,20 +56,32 @@ namespace SıgnalRApi.Controllers
         }
         [HttpPut]
         public IActionResult UpdateBooking(UpdateBookingDto updateBookingDto)
-        {
-            _bookingService.UpdateAsync(new Booking()
+        {			
+			_bookingService.UpdateAsync(new Booking()
             {
                BookingID = updateBookingDto.BookingID,
                Email = updateBookingDto.Email,
                Name = updateBookingDto.Name,
                PersonCount = updateBookingDto.PersonCount,
-               PhoneNumber = updateBookingDto.PhoneNumber
-               
+               PhoneNumber = updateBookingDto.PhoneNumber,      
             });
 
             return Ok("Rezervasyon başarıyla güncellendi");
         }
-    }
+        [HttpGet("BookingStatusApproved/{id}")]
+        public IActionResult BookingStatusApproved(int id)
+        {
+            _bookingService.BookingStatusApprovedAsync(id);
+            return Ok("Rezervasyon Açıklaması Değiştirildi");
+        }
+		[HttpGet("BookingStatusCanselled/{id}")]
+		public IActionResult BookingStatusCanselled(int id)
+		{
+			_bookingService.BookingStatusCanselledAsync(id);
+			return Ok("Rezervasyon Açıklaması Değiştirildi");
+		}
+
+	}
 }
 
 
