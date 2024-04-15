@@ -38,13 +38,37 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
+                                <label for="title">Alt Başlık</label>
+                                <input type="text" class="form-control" asp-for="FooterTitle" id="title" placeholder="Alt Başlık Giriniz">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="OpenDays">Açık Günler</label>
+                                <input type="text" class="form-control" asp-for="OpenDays" id="OpenDays" placeholder="Açık Günler">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="OpenDaysDescription">Açık Günler Açıklaması</label>
+                                <input type="text" class="form-control" asp-for="OpenDaysDescription" id="OpenDaysDescription" placeholder="Açık Günler Açıklaması">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="OpenHours">Açık Saatler</label>
+                                <input type="text" class="form-control" asp-for="OpenHours" id="OpenHours" placeholder="Açık Saatler">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
                                 <label for="FooterDescription">Açıklamayı Giriniz</label>
                                 <input type="text" class="form-control" asp-for="FooterDescription" id="FooterDescription" placeholder="Açıklamayı Giriniz">
                                 @*   <textarea rows="2" class="form-control" asp-for="Description" id="Description" placeholder="Açıklamayı Giriniz" /> *@
                             </div>
                         </div>
                         <div class="card-action">
-                            <button class="btn btn-info">İletişim Yazısını Güncelle</button>
+                            <button class="btn btn-success">İletişim Yazısını Güncelle</button>
                         </div>
                     </div>
                 </form>

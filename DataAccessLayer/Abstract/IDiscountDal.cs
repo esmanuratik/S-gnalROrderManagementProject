@@ -11,5 +11,10 @@ namespace DataAccessLayer.Abstract
     {
         void ChangeStatusToTrue(int id);
         void ChangeStatusToFalse(int id);
+        /// <summary>
+        /// Durumu True Olanlara Göre Getiren Metot
+        /// </summary>
+        /// <returns></returns>
+        List<Discount> GetListByStatusTrue();    
     }
 }

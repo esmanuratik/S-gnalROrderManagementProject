@@ -20,17 +20,17 @@ namespace BusinessLayer.Concrete
 
         public void AddAsync(Slider entity)
         {
-            throw new NotImplementedException();
+            _sliderDal.Add(entity);
         }
 
         public void DeleteAsync(Slider entity)
         {
-            throw new NotImplementedException();
+            _sliderDal.Delete(entity);
         }
 
         public Slider GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+           return _sliderDal.GetById(id);
         }
 
         public List<Slider> GetListAllAsync()
@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
 
         public void UpdateAsync(Slider entity)
         {
-            throw new NotImplementedException();
+            _sliderDal.Update(entity);
         }
     }
 }

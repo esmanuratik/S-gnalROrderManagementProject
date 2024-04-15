@@ -48,7 +48,12 @@ namespace BusinessLayer.Concrete
             return _discountDal.GetListAll();
         }
 
-        public void UpdateAsync(Discount entity)
+		public List<Discount> GetListByStatusTrueAsync()
+		{
+			return _discountDal.GetListByStatusTrue();    
+		}
+
+		public void UpdateAsync(Discount entity)
         {
             _discountDal.Update(entity);
         }

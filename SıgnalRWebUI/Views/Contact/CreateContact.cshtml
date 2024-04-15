@@ -33,6 +33,30 @@
                                 <input type="email" class="form-control" asp-for="MailAddress" id="MailAddress" placeholder="Mail Adresi Giriniz">
                             </div>
                         </div>
+                         <div class="card-body">
+                            <div class="form-group">
+                                <label for="title">Alt Başlık</label>
+                                <input type="text" class="form-control" asp-for="FooterTitle" id="title" placeholder="Alt Başlık Giriniz">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="OpenDays">Açık Günler</label>
+                                <input type="text" class="form-control" asp-for="OpenDays" id="OpenDays" placeholder="Açık Günler">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="OpenDaysDescription">Açık Günler Açıklaması</label>
+                                <input type="text" class="form-control" asp-for="OpenDaysDescription" id="OpenDaysDescription" placeholder="Açık Günler Açıklaması">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="OpenHours">Açık Saatler</label>
+                                <input type="text" class="form-control" asp-for="OpenHours" id="OpenHours" placeholder="Açık Saatler">
+                            </div>
+                        </div>
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="FooterDescription">Açıklamayı Giriniz</label>
@@ -45,7 +69,7 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            </div>@* //Kopyalanan alanlar doldurulacak nulll geliyor eklendiğinde  *@
 
         </div>
     </div>

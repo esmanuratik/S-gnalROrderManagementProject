@@ -11,5 +11,10 @@ namespace BusinessLayer.Abstract
     {
 		void ChangeStatusToTrueAsync(int id);
 		void ChangeStatusToFalseAsync(int id);
+		/// <summary>
+		/// Durumu True Olanları Getiren Metot
+		/// </summary>
+		/// <returns></returns>
+		List<Discount> GetListByStatusTrueAsync();
 	}
 }
