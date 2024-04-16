@@ -82,6 +82,9 @@ namespace SıgnalRApi
 			builder.Services.AddScoped<INotificationService, NotificationService>();
 			builder.Services.AddScoped<INotificationDal, EFNotificationDal>();
 
+			builder.Services.AddScoped<IMessageService, MessageService>();
+			builder.Services.AddScoped<IMessageDal, EFMessageDal>();
+
 			//Cycle Was Detected Hatası ve Çözümü (Json ı dönüştürememe hatası include ekledikten sonra )
 			builder.Services.AddControllersWithViews()
            .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
