@@ -25,4 +25,10 @@
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="QRCoder">
+      <HintPath>..\..\AspNet Core API ile Sipariş Yönetimi Projesi\UdemySignalRProject-master\SignalRWebUI\QRCoder.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
