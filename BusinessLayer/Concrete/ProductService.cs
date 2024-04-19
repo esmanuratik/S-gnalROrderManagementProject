@@ -83,5 +83,20 @@ namespace BusinessLayer.Concrete
         {
             _productDal.Update(entity);
         }
+
+        public decimal ProductPriceBySteakBurgerAsync()
+        {
+           return  _productDal.ProductPriceBySteakBurger();
+        }
+
+        public decimal TotalPriceByDrinkCategoryAsync()
+        {
+            return _productDal.TotalPriceByDrinkCategory();
+        }
+
+        public decimal TotalPriceBySaladCategoryAsync()
+        {
+            return _productDal.TotalPriceBySaladCategory();
+        }
     }
 }

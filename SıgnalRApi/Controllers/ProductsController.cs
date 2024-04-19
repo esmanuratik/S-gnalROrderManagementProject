@@ -65,7 +65,23 @@ namespace SıgnalRApi.Controllers
 		{
 			return Ok(_productService.ProductAvgPriceByHamburgerAsync());
 		}
-		[HttpGet("{id}")]
+        [HttpGet("ProductPriceBySteakBurger")]
+        public IActionResult ProductPriceBySteakBurger()
+        {
+            return Ok(_productService.ProductPriceBySteakBurgerAsync());
+        }
+        [HttpGet("TotalPriceByDrinkCategory")]
+        public IActionResult TotalPriceByDrinkCategory()
+        {
+            return Ok(_productService.TotalPriceByDrinkCategoryAsync());
+        }
+        [HttpGet("TotalPriceBySaladCategory")]
+        public IActionResult TotalPriceBySaladCategory()
+        {
+            return Ok(_productService.TotalPriceBySaladCategoryAsync());
+        }
+
+        [HttpGet("{id}")]
         public IActionResult GetProduct(int id)
         {
             var value = _productService.GetByIdAsync(id);

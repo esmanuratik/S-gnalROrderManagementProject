@@ -17,5 +17,9 @@ namespace BusinessLayer.Abstract
 		string ProductNameByMaxPriceAsync();
 		string ProductNameByMinPriceAsync();
 		decimal ProductAvgPriceByHamburgerAsync();
-	}
+        decimal ProductPriceBySteakBurgerAsync();
+        decimal TotalPriceByDrinkCategoryAsync();
+        decimal TotalPriceBySaladCategoryAsync();
+
+    }
 }

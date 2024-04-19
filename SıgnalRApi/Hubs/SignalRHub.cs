@@ -110,8 +110,34 @@ namespace SıgnalRApi.Hubs
 			//Aktif Masa Sayısı
 			var value3 = _menuTableService.MenuTableCountAsync();
 			await Clients.All.SendAsync("ReceiveMenuTableCount",value3);
-		}
-		public async Task GetBookingList()
+
+            //Ortalama Ürün Fiyatı
+            var value5 = _productService.ProductPriceAvgAsync();
+            await Clients.All.SendAsync("ReceiveProductPriceAvg", value5);
+
+            //Ortalama Hamburger Fiyatı
+            var value6 = _productService.ProductAvgPriceByHamburgerAsync();
+            await Clients.All.SendAsync("ReceiveProductAvgPriceByHamburger", value6);
+
+            //Ortalama Kategoriye Göre İçecek Fiyatı
+            var value7 = _productService.ProductCountByCategoryNameDrinkAsync();
+            await Clients.All.SendAsync("ReceiveProductCountByCategoryNameDrink", value7);
+
+            //Toplam Sipariş Sayısı
+            var value8 = _orderService.TotalOrderCountAsync();
+            await Clients.All.SendAsync("ReceiveTotalOrderCount", value8);
+
+            var value9 = _productService.ProductPriceBySteakBurgerAsync();
+            await Clients.All.SendAsync("ReceiveProductPriceBySteakBurger", value9);
+
+            var value10 = _productService.TotalPriceByDrinkCategoryAsync();
+            await Clients.All.SendAsync("ReceiveTotalPriceByDrinkCategory", value10);
+
+            var value11 = _productService.TotalPriceBySaladCategoryAsync();
+            await Clients.All.SendAsync("ReceiveTotalPriceBySaladCategory", value11);
+
+        }
+        public async Task GetBookingList()
 		{
 			var values= _bookingService.GetListAllAsync();
 			await Clients.All.SendAsync("ReceiveBookingList",values);
