@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SıgnalRWebUI.DTOs.MessageDtos;
 using System.Text;
 
 namespace SıgnalRWebUI.Controllers
 {
+	[AllowAnonymous]
     public class DefaultController : Controller
     {
 
